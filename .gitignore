@@ -1,0 +1,7 @@
+models/notes.txt
+models/rough.txt
+__pycache__/
+.idea/
+controllers/__pycache__/
+services/__pycache__/
+models/__pycache__/

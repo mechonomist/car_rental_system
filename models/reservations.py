@@ -52,3 +52,7 @@ class VehicleReservation(object):
 	@property
 	def vehicle_details(self):
 		return self.__vehicle_details
+
+	@property
+	def pickup_location(self):
+		return self.__pickup_location

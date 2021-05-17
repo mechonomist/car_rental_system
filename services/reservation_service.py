@@ -33,17 +33,17 @@ class ReservationService:
 
     def get_reservation_by_vehicle_type(self, vehicle_type):
         reservation_by_type = []
-        for reservation in self.reservations:
-            if reservation.vehicle.vehicle_type == vehicle_type:
+        for reservation in self.reservations.values():
+            if reservation.vehicle_details.vehicle_type == vehicle_type:
                 reservation_by_type.append(reservation)
         return reservation_by_type
 
-    def get_reservation_by_pickup_location(self, capacity):
-        reservation_by_type = []
-        for reservation in self.reservations:
-            if reservation.vehicle.passenger_capacity == capacity:
-                reservation_by_type.append(reservation)
-        return reservation_by_type
+    def get_reservation_by_pickup_location(self, pickup_location):
+        reservation_by_location = []
+        for reservation in self.reservations.values():
+            if reservation.pickup_location == pickup_location:
+                reservation_by_location.append(reservation)
+        return reservation_by_location
 
     def get_additional_drivers(self, reservation_num):
         reservation_obj = self.get_reservation_by_id(reservation_num)

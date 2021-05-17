@@ -23,7 +23,7 @@ class VehicleReservationController:
 
 	def filter_reservations(self, **kwargs):
 		vehicle_type = kwargs.get("vehicle_type", None)
-		pickup_location = kwargs.get("pick_up_location", None)
+		pickup_location = kwargs.get("pickup_location", None)
 
 		if vehicle_type and pickup_location:
 			res_by_type = self.reservation_service.get_reservation_by_vehicle_type(vehicle_type)
@@ -69,15 +69,24 @@ if __name__ == "__main__":
 
 	veh_res_controller_obj = VehicleReservationController(veh_service_1, acc_service_1, res_service_1)
 	# print(veh_res_controller_obj)
-	veh_res_controller_obj.make_reservation('res_num123', '2021-05-23', member_acc_1, vehicle_1, 'Hyderabad', 'Hyderabad')
+	res1 = veh_res_controller_obj.make_reservation('res_num123', '2021-05-23', member_acc_1, vehicle_1, 'Hyderabad', 'Hyderabad')
+	res2 = veh_res_controller_obj.make_reservation('res_num234', '2021-05-23', member_acc_1, vehicle_2, 'Bangalore', 'Hyderabad')
 	print(veh_res_controller_obj.get_reservation_details('res_num123'))
 
-	veh_res_controller_obj.end_reservation('res_num123')
 
-	print(len(res_service_1.reservations))
 
-	veh_res_controller_obj.make_reservation('res_num124', '2021-05-21', member_acc_2, vehicle_1, 'Hyderabad', 'Hyderabad')
-	print(len(res_service_1.reservations))
+
+
+	# results = veh_res_controller_obj.filter_reservations(vehicle_type='Van')
+	# results = veh_res_controller_obj.filter_reservations(pickup_location='Bangalore')
+	# print("results", results)
+
+	# veh_res_controller_obj.end_reservation('res_num123')
+	#
+	# print(len(res_service_1.reservations))
+	#
+	# veh_res_controller_obj.make_reservation('res_num124', '2021-05-21', member_acc_2, vehicle_1, 'Hyderabad', 'Hyderabad')
+	# print(len(res_service_1.reservations))
 
 
 
