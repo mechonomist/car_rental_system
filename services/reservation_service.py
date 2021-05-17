@@ -20,7 +20,7 @@ class ReservationService:
 
     def get_reservation_by_member(self, member_id):
         reservation_by_member = []
-        for reservation in self.reservations:
+        for reservation in self.reservations.values():
             if reservation.member_details.account_id == member_id:
                 reservation_by_member.append(reservation)
         return reservation_by_member

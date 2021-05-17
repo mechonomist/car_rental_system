@@ -21,6 +21,12 @@ class VehicleReservationController:
 		self.vehicle_service.return_vehicle(veh_num)
 		return True
 
+	def filter_reservations_by_member(self, member_id):
+		# member_obj = self.account_service.search_member(member_id)
+		# if member_obj:
+		return self.reservation_service.get_reservation_by_member(member_id)
+
+
 	def filter_reservations(self, **kwargs):
 		vehicle_type = kwargs.get("vehicle_type", None)
 		pickup_location = kwargs.get("pickup_location", None)
@@ -70,8 +76,12 @@ if __name__ == "__main__":
 	veh_res_controller_obj = VehicleReservationController(veh_service_1, acc_service_1, res_service_1)
 	# print(veh_res_controller_obj)
 	res1 = veh_res_controller_obj.make_reservation('res_num123', '2021-05-23', member_acc_1, vehicle_1, 'Hyderabad', 'Hyderabad')
-	res2 = veh_res_controller_obj.make_reservation('res_num234', '2021-05-23', member_acc_1, vehicle_2, 'Bangalore', 'Hyderabad')
-	print(veh_res_controller_obj.get_reservation_details('res_num123'))
+	res2 = veh_res_controller_obj.make_reservation('res_num234', '2021-05-25', member_acc_1, vehicle_2, 'Bangalore', 'Hyderabad')
+	# print(veh_res_controller_obj.get_reservation_details('res_num123'))
+	results = veh_res_controller_obj.filter_reservations_by_member('account_id_2')
+	for reservation in results:
+		print(reservation.due_date)
+
 
 
 
