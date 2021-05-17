@@ -1,0 +1,64 @@
+
+1. The system will support the renting of different automobiles like cars, trucks, SUVs, vans, and motorcycles.
+	we create model objects for respective entities
+	implement setters, getters for required attributes
+
+2. Each vehicle should be added with a unique barcode and other details, including a parking stall number which helps to locate the vehicle.
+	this comes under required attributes - in this case for a vehicle
+	we need to create a class called parking stall, 
+		and also a parking stall controller --> update a slot with a vechile number
+		--> we need a stall class and stall controller class
+
+3. The system should be able to retrieve information like which member took a particular vehicle or what vehicles have been rented out by a specific member.
+	we have a vehicle reservation model - this model stores all details relating to a vehicle reservation
+	we can define methods inside the vehicle reservation controller class - that retrieves reservation information
+	retrieving reservation information can be divided if required
+		like 
+			retrieve details by member --> HOW?
+			retrieve details by vehicle, vehicle_type etc.
+
+4. The system should collect a late-fee for vehicles returned after the due date.
+	we can have a due_date attribute in the vehicle reservation model
+	check if current date is greater than the due date attribute and find out if it is late fee eligible
+
+5. Members should be able to search the vehicle inventory and reserve any available vehicle.
+	members should be able search all available vehicles --> this is vehicle model
+	should be able to search by availability attribute, type attribute etc.
+	to reserve a vehicle they can call a method in vehicle reservation controller 
+		--> this will call reserve vehicle method in the vehicle controller class
+		--> 
+
+
+------------------------------------------------------------------------------------------------
+- super class should not have an idea of its subclasses 
+- superclass shouln't maintain any functionality based on subclass type
+- when it can do specific work related to subclsses - it means it has access to subclass types, and it knows what a subclass can do - which in ideal case shouldn't happen
+
+-- setters and getters can have some logic as well - not just setting and returning values
+------------------------------------------------------------------------------------------------
+vehicle reservation shouldn't be created in vehicle class
+	in this way we are passing details that are not specific to the vehcile
+
+	we should let a 3rd class create a reservation, that 3rd class will have vehicle info, account info etc.
+
+	3rd class - Vehicle Reservation - when a member asks to reserve a vehicle, we pass the required information of account, vehicle, #days, pickup, drop off etc.
+		then tell vechicle to reserve itself --> update status to 'reserved'
+		same place we can tell member that they booked a vehicle
+
+
+
+Reservation process:
+	we look for vehicles --> we are already updating the status oof a vehicle --> so we know which vehicles are available
+	create functionality inside vehicle class --> to get all available vehicles --> classmethod --> this method will read all vehicle objects from the db --> convert them to vehicle objects and send them back to which ever function called it
+
+	 
+
+
+
+
+
+
+
+
+
+
